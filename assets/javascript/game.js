@@ -20,9 +20,6 @@ https://www.w3schools.com/howto/howto_js_toggle_password.asp
     // Log missed guess in another variable, display that variable 
     // If match, replace the underscore with correctly guessed letter at the right index
 
-
-
-
 // (1) display alert if player wins, then reload page 
 // If wrong letter already guessed, then don't decrement counter 
 // If win, up the win counter by one 
@@ -33,13 +30,22 @@ window.onload = function() {
 
 var randomWordsList = ["plant", "cellar", "adamant", "irritate", "harass", "highfalutin", "charming", "popcorn", "torpid", "seashore"]; 
 
-var randomWord = randomWordsList[Math.floor(Math.random()*randomWordsList.length)]; // generates random word 
+var randomWord = randomWordsList[Math.floor(Math.random()*randomWordsList.length)]; // generates random word
+
+function newWord() {
+    var anotherWord = randomWordsList[Math.floor(Math.random()*randomWordsList.length)]; 
+    randomWord = anotherWord; 
+}
 
 var blankWord = []; 
 
 var wrongGuess = []; 
 
 var wins = 0; 
+
+var audioWin = new Audio("assets/sounds/achievement.mp3"); 
+
+var audioLose = new Audio("assets/sounds/lose.wav");
 
 var numGuesses = randomWord.length +1; 
 
@@ -50,7 +56,6 @@ for (var i = 0; i < randomWord.length; i++) {
 document.getElementById("blankWord").innerHTML = blankWord.join(" "); // converts blankWord array into a string with a space
 
 document.onkeyup = function(event) {
-
 
     var userKey = event.key.toLowerCase();
 
@@ -75,15 +80,8 @@ document.onkeyup = function(event) {
 
                 document.getElementById("countGuesses").innerHTML = numGuesses; //display guesses left
 
-                if (blankWord.join("") == randomWord) {
-
-                    alert("Congrats, you guessed it right!"); 
-                    wins++; 
-
-                    document.getElementById("winsCount").innerHTML = wins; // display the updated guess
-                }
-
             } 
+
         }
     } else { 
 
@@ -98,17 +96,32 @@ document.onkeyup = function(event) {
             document.getElementById("countGuesses").innerHTML = numGuesses; //display the decremented numGuesses
     
             if (numGuesses === 0) {
-                alert("Dang, try again!"); 
-                location.reload(); // page reloads if user loses game 
+                alert("Dang, try again!"); // you could maybe delay this alert 
+                audioLose.play();
             }
 
         }
-
-       
         
     }
 
-}
+    if (blankWord.join("") == randomWord) {
 
+        audioWin.play(); 
+
+        wins++; 
+
+        function delayAlert() {
+            setTimeout(function(){ alert("Congrats, you figured it out!"); }, 500);
+        }
+        delayAlert(); 
+
+        document.getElementById("winsCount").innerHTML = wins; // display the updated guess
+
+        document.getElementById("playAgain").onclick = newWord(); // generate new word 
+
+        // invoke a function that randomly generates another word functionName(); 
+    }
+
+}
 
 }

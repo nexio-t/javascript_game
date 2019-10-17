@@ -29,28 +29,62 @@ var randomWord = randomWordsList[Math.floor(Math.random()*randomWordsList.length
 
 var blankWord = []; 
 
+var wrongGuess = []; 
+
+var numGuesses = randomWord.length; 
 
 for (var i = 0; i < randomWord.length; i++) {
-    blankWord.push("_"); 
+    blankWord.push(" _ "); 
 }
 
 document.getElementById("blankWord").innerHTML = blankWord.join(" "); // converts blankWord array into a string with a space
 
 document.onkeyup = function(event) {
 
+
     var userKey = event.key.toLowerCase();
 
     document.getElementById("pressedKey").style.display = "none"; 
 
-    if (randomWord.includes(userKey)) {
-        for (var i = 0; i < randomWord.length; i++) {
-            if (userKey === randomWord[i]) {  
-                blankWord[i] === userKey; // replace 
-            } else {
-                // pass it through to failed guesses 
-            }
+    console.log(randomWord);
+
+    // if user key does not equal meta, then initiate this 
+
+    if (randomWord.includes(userKey)) { // initiate for loop if the user's guess is included in the word 
+        for (var i = 0; i < randomWord.length; i++) { // loop through each letter of the randomword 
+
+            if (userKey === randomWord[i]) {  // examine if the user's guess is equal to each letter of random word 
+
+                console.log(randomWord[i]);
+                blankWord[i] = userKey; // if above true, then replace the blankword underscore with user's guess 
+                document.getElementById("blankWord").innerHTML = blankWord.join(" ");
+                console.log(blankWord);
+                document.getElementById("countGuesses").innerHTML = numGuesses; //display guesses left
+
+            } 
         }
-    } 
+    } else { 
+        wrongGuess.push(userKey); // if above false, then push user's guess to another array 
+        document.getElementById("lettersGuessed").innerHTML = wrongGuess.join(", "); // then, display that wrong guess 
+
+        console.log(numGuesses); 
+        console.log("----------");
+
+        numGuesses--; // subtract one from numGuesses for wrong guess
+
+        console.log(numGuesses); 
+        console.log("----------");
+
+        document.getElementById("countGuesses").innerHTML = numGuesses; //display the decremented numGuesses
+
+        
+
+        if (numGuesses === 0) {
+            alert("Dang, try again!"); 
+            location.reload; 
+        }
+        
+    }
 
 }
 

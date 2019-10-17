@@ -39,9 +39,9 @@ var blankWord = [];
 
 var wrongGuess = []; 
 
-var wins; 
+var wins = 0; 
 
-var numGuesses = randomWord.length; 
+var numGuesses = randomWord.length +1; 
 
 for (var i = 0; i < randomWord.length; i++) {
     blankWord.push(" _ "); 
@@ -71,17 +71,17 @@ document.onkeyup = function(event) {
 
                 document.getElementById("blankWord").innerHTML = blankWord.join(" ");
 
-                console.log(blankWord);
+                console.log(blankWord.join("") + "test");
 
                 document.getElementById("countGuesses").innerHTML = numGuesses; //display guesses left
 
-                // if (blankword.toString() == randomWord) {
+                if (blankWord.join("") == randomWord) {
 
-                //     alert("Congrats, you guessed it right!"); 
-                //     wins++; 
+                    alert("Congrats, you guessed it right!"); 
+                    wins++; 
 
-                //     document.getElementById("winsCount").innerHTML = wins; // display the updated guess
-                // }
+                    document.getElementById("winsCount").innerHTML = wins; // display the updated guess
+                }
 
             } 
         }

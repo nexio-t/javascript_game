@@ -20,7 +20,15 @@ https://www.w3schools.com/howto/howto_js_toggle_password.asp
     // Log missed guess in another variable, display that variable 
     // If match, replace the underscore with correctly guessed letter at the right index
 
- 
+
+
+
+// (1) display alert if player wins, then reload page 
+// If wrong letter already guessed, then don't decrement counter 
+// If win, up the win counter by one 
+// If loss, then find new randomWord 
+// (2) start game when player presses "enter" 
+
 window.onload = function() {
 
 var randomWordsList = ["plant", "cellar", "adamant", "irritate", "harass", "highfalutin", "charming", "popcorn", "torpid", "seashore"]; 
@@ -30,6 +38,8 @@ var randomWord = randomWordsList[Math.floor(Math.random()*randomWordsList.length
 var blankWord = []; 
 
 var wrongGuess = []; 
+
+var wins; 
 
 var numGuesses = randomWord.length; 
 
@@ -56,33 +66,45 @@ document.onkeyup = function(event) {
             if (userKey === randomWord[i]) {  // examine if the user's guess is equal to each letter of random word 
 
                 console.log(randomWord[i]);
+
                 blankWord[i] = userKey; // if above true, then replace the blankword underscore with user's guess 
+
                 document.getElementById("blankWord").innerHTML = blankWord.join(" ");
+
                 console.log(blankWord);
+
                 document.getElementById("countGuesses").innerHTML = numGuesses; //display guesses left
+
+                // if (blankword.toString() == randomWord) {
+
+                //     alert("Congrats, you guessed it right!"); 
+                //     wins++; 
+
+                //     document.getElementById("winsCount").innerHTML = wins; // display the updated guess
+                // }
 
             } 
         }
     } else { 
-        wrongGuess.push(userKey); // if above false, then push user's guess to another array 
-        document.getElementById("lettersGuessed").innerHTML = wrongGuess.join(", "); // then, display that wrong guess 
 
-        console.log(numGuesses); 
-        console.log("----------");
+        if (!wrongGuess.includes(userKey)) {
 
-        numGuesses--; // subtract one from numGuesses for wrong guess
-
-        console.log(numGuesses); 
-        console.log("----------");
-
-        document.getElementById("countGuesses").innerHTML = numGuesses; //display the decremented numGuesses
-
+            wrongGuess.push(userKey); // if above false, then push user's guess to another array 
         
+            document.getElementById("lettersGuessed").innerHTML = wrongGuess.join(", "); // then, display that wrong guess 
+    
+            numGuesses--; // subtract one from numGuesses for wrong guess
+    
+            document.getElementById("countGuesses").innerHTML = numGuesses; //display the decremented numGuesses
+    
+            if (numGuesses === 0) {
+                alert("Dang, try again!"); 
+                location.reload(); // page reloads if user loses game 
+            }
 
-        if (numGuesses === 0) {
-            alert("Dang, try again!"); 
-            location.reload; 
         }
+
+       
         
     }
 

@@ -28,14 +28,14 @@ https://www.w3schools.com/howto/howto_js_toggle_password.asp
 
 window.onload = function() {
 
+
+/*********************** Global Variables **************************/
+
 var randomWordsList = ["plant", "cellar", "adamant", "irritate", "harass", "highfalutin", "charming", "popcorn", "torpid", "seashore"]; 
 
 var randomWord = randomWordsList[Math.floor(Math.random()*randomWordsList.length)]; // generates random word
 
-function newWord() {
-    var anotherWord = randomWordsList[Math.floor(Math.random()*randomWordsList.length)]; 
-    randomWord = anotherWord; 
-}
+console.log(randomWord);
 
 var blankWord = []; 
 
@@ -49,19 +49,19 @@ var audioLose = new Audio("assets/sounds/lose.wav");
 
 var numGuesses = randomWord.length +1; 
 
-for (var i = 0; i < randomWord.length; i++) {
+for (var i = 0; i < randomWord.length; i++) { // for loop that generates underscore equal in length to the random word 
     blankWord.push(" _ "); 
 }
 
 document.getElementById("blankWord").innerHTML = blankWord.join(" "); // converts blankWord array into a string with a space
+
+/*********************** On key up event **************************/
 
 document.onkeyup = function(event) {
 
     var userKey = event.key.toLowerCase();
 
     document.getElementById("pressedKey").style.display = "none"; 
-
-    console.log(randomWord);
 
     // if user key does not equal meta, then initiate this 
 
@@ -117,11 +117,11 @@ document.onkeyup = function(event) {
 
         document.getElementById("winsCount").innerHTML = wins; // display the updated guess
 
-        document.getElementById("playAgain").onclick = newWord(); // generate new word 
-
+        // document.getElementById("playAgain").style = "display: show";
+        
         // invoke a function that randomly generates another word functionName(); 
     }
 
-}
+} 
 
 }

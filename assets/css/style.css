@@ -1,0 +1,41 @@
+#pressedKey {
+    font-family: 'Lobster', cursive;
+}
+
+#winsCount {
+    font-family: 'VT323', monospace;
+}
+
+#blankWord {
+    font-family: 'VT323', monospace;
+    font-size: 20pt; 
+}
+
+#countGuesses {
+    font-family: 'VT323', monospace;
+}
+
+#lettersGuessed {
+    font-family: 'VT323', monospace;
+
+}
+
+#playAgain {
+    font-family: 'VT323', monospace;
+}
+
+#WinsStyle {
+    font-family: 'VT323', monospace;
+}
+
+#guessRem {
+    font-family: 'VT323', monospace;
+}
+
+#letGuess {
+    font-family: 'VT323', monospace;
+}
+
+body {
+    background-image: url("/assets/images/dot-grid.png"); 
+}

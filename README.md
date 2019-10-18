@@ -7,7 +7,7 @@
 * Repeat presses of the same incorrect key won't double count 
 * If the user wins, the win counter goes up and win sound plays
 * If the user loses, a new game is loaded and lose sound plays
-* Remaining: automatically load new word once user "wins" game and eliminate registering of non-alphanumeric keys (e.g., shift, enter, etc.)
+* Remaining: automatically load new word once user "wins" game and eliminate registering of key presses that are non-alphanumeric (e.g., shift, enter, etc.)
 
 ### Author
 

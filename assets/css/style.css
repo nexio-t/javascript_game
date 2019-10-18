@@ -13,11 +13,12 @@
 
 #countGuesses {
     font-family: 'VT323', monospace;
+    border: 1px lightgray solid; 
+    padding: 0.1em; 
 }
 
 #lettersGuessed {
     font-family: 'VT323', monospace;
-
 }
 
 #playAgain {
@@ -30,12 +31,15 @@
 
 #guessRem {
     font-family: 'VT323', monospace;
+    font-size: 16pt; 
 }
 
 #letGuess {
     font-family: 'VT323', monospace;
+    font-size: 16pt; 
 }
 
 body {
-    background-image: url("/assets/images/dot-grid.png"); 
+    background-image: url("../images/dot_grid_.jpg"); 
+    background-repeat: repeat;
 }

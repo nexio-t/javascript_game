@@ -28,12 +28,16 @@ https://www.w3schools.com/howto/howto_js_toggle_password.asp
 
 window.onload = function() {
 
-
 /*********************** Global Variables **************************/
 
-var randomWordsList = ["plant", "cellar", "adamant", "irritate", "harass", "highfalutin", "charming", "popcorn", "torpid", "seashore"]; 
+var randomWordsList = ["plant", "cellar", "adamant", "irritate", "son", "govern", "attention", "highfalutin", "blush", "flower", "jittery", "nurse", "flaky", "achiever", "dry", "impartial", "deny", "ooze", "fill", "volcano", "light", "food", "majestic", "ubiquitous", "egg", "charming", "popcorn", "torpid", "seashore"]; 
 
-var randomWord = randomWordsList[Math.floor(Math.random()*randomWordsList.length)]; // generates random word
+function generateRandomWord() {
+    var textWord = randomWordsList[Math.floor(Math.random()*randomWordsList.length)]; 
+    return textWord; 
+} 
+
+var randomWord = generateRandomWord();  // generates random word
 
 console.log(randomWord);
 
@@ -45,9 +49,9 @@ var wins = 0;
 
 var audioWin = new Audio("assets/sounds/achievement.mp3"); 
 
-var audioLose = new Audio("assets/sounds/lose.wav");
+var audioLose = new Audio("assets/sounds/lose_.mp3");
 
-var numGuesses = randomWord.length +1; 
+var numGuesses = randomWord.length +5; 
 
 for (var i = 0; i < randomWord.length; i++) { // for loop that generates underscore equal in length to the random word 
     blankWord.push(" _ "); 
@@ -62,8 +66,6 @@ document.onkeyup = function(event) {
     var userKey = event.key.toLowerCase();
 
     document.getElementById("pressedKey").style.display = "none"; 
-
-    // if user key does not equal meta, then initiate this 
 
     if (randomWord.includes(userKey)) { // initiate for loop if the user's guess is included in the word 
         for (var i = 0; i < randomWord.length; i++) { // loop through each letter of the randomword 
@@ -96,8 +98,13 @@ document.onkeyup = function(event) {
             document.getElementById("countGuesses").innerHTML = numGuesses; //display the decremented numGuesses
     
             if (numGuesses === 0) {
-                alert("Dang, try again!"); // you could maybe delay this alert 
                 audioLose.play();
+                var okay = confirm("Dang, try again!"); 
+                if (okay == true) {
+                    location.reload(); 
+                } else {
+                    location.reload(); 
+                }
             }
 
         }
@@ -105,18 +112,29 @@ document.onkeyup = function(event) {
     }
 
     if (blankWord.join("") == randomWord) {
-
         audioWin.play(); 
-
         wins++; 
+        document.getElementById("winsCount").innerHTML = wins; 
+        generateRandomWord();
+        
+
+        // var again = confirm("Congrats, you got it!");
+        // if (again == true) {
+        //     location.reload(); 
+        // } else {
+        //     location.reload();
+        // }
 
         function delayAlert() {
-            setTimeout(function(){ alert("Congrats, you figured it out!"); }, 500);
+            setTimeout(function(){ confirm("Congrats, you figured it out! \nNow please refresh to play again!"); }, 500);
+            // if (confirm) {
+            //     location.reload();
+            // }
         }
         delayAlert(); 
 
-        document.getElementById("winsCount").innerHTML = wins; // display the updated guess
-
+        // display the updated guess
+        
         // document.getElementById("playAgain").style = "display: show";
         
         // invoke a function that randomly generates another word functionName(); 

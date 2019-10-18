@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
 
     <script src="assets/javascript/game.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Lobster|VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link
+      href="https://fonts.googleapis.com/css?family=Lobster|VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+  </head>
 
-</head>
+  <body>
+    <div class="container">
+      <h2 id="pressedKey">Press any key to get started!</h2>
 
-<body>
-    
-    <h2 id="pressedKey">Press any key to get started!</h2>
+      <p id="WinsStyle">Wins: <span id="winsCount"></span></p>
 
-    <p id="WinsStyle">Wins: <span id="winsCount"></span></p>
+      <h3><span id="blankWord"></span></h3>
 
-    <h3><span id="blankWord"></span></h3>
+      <p id="guessRem">
+        Number of guesses remaining: <span id="countGuesses">-</span>
+      </p>
 
-    <p id="guessRem">Number of guesses remaining: <span id="countGuesses"></span></p>
-
-    <p id="letGuess">Letters already guessed: <span id="lettersGuessed"></span></p>
-
-    <button id="playAgain">Another Word</button>
-
-</body>
+      <p id="letGuess">
+        Letters already guessed: <span id="lettersGuessed"></span>
+      </p>
+    </div>
+    <!-- 
+    <button id="playAgain">Another Word</button> -->
+  </body>
 </html>

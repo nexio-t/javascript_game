@@ -1,45 +1,107 @@
+#head {
+    font-family: 'Lobster', cursive;
+    font-size: 36pt; 
+    text-align: center; 
+}
+
+#description {
+    font-family: 'Lobster', cursive;
+    font-weight: lighter; 
+    font-size: 12pt; 
+}
 #pressedKey {
     font-family: 'Lobster', cursive;
+    font-size: 18pt; 
+    text-align: center; 
+}
+
+#nerd-image {
+    display: block; 
+    margin-left: auto; 
+    margin-right: auto; 
 }
 
 #winsCount {
-    font-family: 'VT323', monospace;
+    font-family: 'Nunito Sans', sans-serif;
+    
 }
 
 #blankWord {
-    font-family: 'VT323', monospace;
+    font-family: 'Nunito Sans', sans-serif;
     font-size: 20pt; 
+    border: 3px lightgray solid; 
+    padding-right: 20px; 
+    padding-left: 20px; 
+    border-radius: 10px; 
+    justify-items: center;
+    margin-top: 40px; 
+    margin-bottom: 40px; 
+  
 }
 
 #countGuesses {
-    font-family: 'VT323', monospace;
-    border: 1px lightgray solid; 
+    font-family: 'Nunito Sans', sans-serif;
     padding: 0.1em; 
 }
 
 #lettersGuessed {
-    font-family: 'VT323', monospace;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 11pt; 
+   
 }
 
 #playAgain {
-    font-family: 'VT323', monospace;
+    font-family: 'Nunito Sans', sans-serif;
 }
 
 #WinsStyle {
-    font-family: 'VT323', monospace;
+    font-family: 'Nunito Sans', sans-serif;
+    padding-left: 0px; 
+    padding-right: 0px; 
+    font-size: 11pt; 
+    font-weight: lighter; 
+}
+
+#lossStyle {
+    font-family: 'Nunito Sans', sans-serif;
+   
+    padding-left: 0px; 
+    padding-right: 0px; 
+    font-size: 11pt; 
+    font-weight: lighter; 
 }
 
 #guessRem {
-    font-family: 'VT323', monospace;
-    font-size: 16pt; 
+    font-family:'Nunito Sans', sans-serif;
+    font-size: 11pt; 
+    font-weight: lighter; 
 }
 
 #letGuess {
-    font-family: 'VT323', monospace;
-    font-size: 16pt; 
+    font-family: 'Nunito Sans', sans-serif;
+    font-style: italic; 
+    font-size: 10pt; 
+    padding-top: 20px; 
 }
 
 body {
     background-image: url("../images/dot_grid_.jpg"); 
     background-repeat: repeat;
+}
+
+.container {
+    width: 50%; 
+}
+
+#nerd-image {
+    height: 150px; 
+    width: auto;
+}
+
+.jumbotron {
+    margin-bottom: 20px; ; 
+    padding-bottom: 15px;
+    padding-top: 20px;  
+    background-color: #ADD8E6;
+    height: 330px; 
 }

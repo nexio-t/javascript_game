@@ -1,35 +1,35 @@
 window.onload = function() {
   // List of random words
   var randomWordsList = [
-    "plant",
-    "cellar",
+    "captious",
+    "fastidious",
     "adamant",
-    "irritate",
-    "son",
-    "govern",
+    "asperity",
+    "nonplus",
+    "turpitude",
     "attention",
     "highfalutin",
-    "blush",
-    "flower",
-    "jittery",
-    "nurse",
-    "flaky",
-    "achiever",
-    "dry",
+    "stringent",
+    "bibulous",
+    "blandish",
+    "affluent",
+    "discomfit",
+    "trenchant",
+    "profligate",
     "impartial",
-    "deny",
-    "ooze",
-    "fill",
-    "volcano",
-    "light",
-    "food",
+    "insouciance",
+    "agnostic",
+    "redoubtable",
+    "noisome",
+    "stalwart",
+    "brood",
     "majestic",
     "ubiquitous",
-    "egg",
+    "esoteric",
     "charming",
-    "popcorn",
+    "brusque",
     "torpid",
-    "seashore"
+    "fastidious"
   ];
 
   var blankWord;
@@ -37,122 +37,126 @@ window.onload = function() {
   var numGuesses;
   var randomWord;
 
-  // Function that generates random disguised word and restarts game
+  // Function that restarts game (and game stats) and generates random disguised word 
   function generateRandomWord() {
-    randomWord =
-      randomWordsList[Math.floor(Math.random() * randomWordsList.length)];
+    randomWord = randomWordsList[Math.floor(Math.random() * randomWordsList.length)];
     wrongGuess = [];
     blankWord = [];
     numGuesses = randomWord.length + 5;
-    // for loop that generates underscore equal in length to the random word
+
+    // For loop that creates disguised random word
     for (var i = 0; i < randomWord.length; i++) {
       blankWord.push(" _ ");
     }
 
+    // Reset game stats 
     document.getElementById("blankWord").innerHTML = blankWord.join(" ");
     document.getElementById("countGuesses").innerHTML = numGuesses;
     document.getElementById("lettersGuessed").innerHTML = wrongGuess.join(", ");
 
     console.log(randomWord);
-    // return randomWord;
   }
 
+  // Set wins to zero 
   var wins = 0;
+  var losses = 0; 
 
+  // Variables storing audio 
   var audioWin = new Audio("assets/sounds/achievement.mp3");
-
   var audioLose = new Audio("assets/sounds/lose_.mp3");
-
-  // converts blankWord array into a string with a space
-
-  /*********************** On key up event **************************/
-
+  
+  // For a key up event 
   document.onkeyup = function(event) {
     var userEnter = event.keyCode;
 
-    console.log(userEnter);
-
+    // If user presses "enter"
     if (userEnter == 13) {
+        
+      // Then sart game 
       generateRandomWord();
-    
+        
+      // Then hide welcoming display message 
       document.getElementById("pressedKey").style.display = "none";
-      // console.log(newWord);
-
+    
+      // For a second key up event 
       document.onkeyup = function(event) {
+
+        // Store user's key in variable userKey 
         var userKey = event.key.toLowerCase();
 
-        
+        // Store user's keyCode in variable userKeyCode 
+        var userKeyCode = event.keyCode; 
 
+        // If disguised word includes user key, initiate for loop 
         if (randomWord.includes(userKey)) {
-          // initiate for loop if the user's guess is included in the word
-          for (var i = 0; i < randomWord.length; i++) {
-            // loop through each letter of the randomWord
+          
+          // Then loop through each letter of the randomWord to check where user key matches 
+            for (var i = 0; i < randomWord.length; i++) {
 
-            if (userKey === randomWord[i]) {
-              // examine if the user's guess is equal to each letter of random word
+                // If the user's key press is equal to the letter of random word at index i 
+                if (userKey === randomWord[i]) {
 
-              console.log(randomWord[i]);
+                    // Then replace the blankword underscore with user's guess at index i
+                    blankWord[i] = userKey; 
 
-              blankWord[i] = userKey; // if above true, then replace the blankword underscore with user's guess
+                    // Then display the correctly guessed letter in the word 
+                    document.getElementById("blankWord").innerHTML = blankWord.join(" ");
 
-              document.getElementById("blankWord").innerHTML = blankWord.join(
-                " "
-              );
-
-              console.log(blankWord.join("") + "test");
-
-              document.getElementById("countGuesses").innerHTML = numGuesses; //display guesses left
             }
           }
         } else {
-          if (!wrongGuess.includes(userKey)) {
-            wrongGuess.push(userKey); // if above false, then push user's guess to another array
 
-            document.getElementById("lettersGuessed").innerHTML = wrongGuess.join(", "); // then, display that wrong guess
+            // If the wrong guess array doesn't already include the key press and the user key press is a letter 
+            if (!wrongGuess.includes(userKey) && (userKeyCode < 91 && userKeyCode >= 65)) {
 
-            numGuesses--; // subtract one from numGuesses for wrong guess
+                // Then push the user's guess to the wrong guess array 
+                wrongGuess.push(userKey); 
 
-            document.getElementById("countGuesses").innerHTML = numGuesses; //display the decremented numGuesses
+                // Then display the updated wrong guess array
+                document.getElementById("lettersGuessed").innerHTML = wrongGuess.join(", "); 
 
+                // Subtract one from guesses variable
+                numGuesses--; 
+
+                // Then display the decremented guesses variable  
+                document.getElementById("countGuesses").innerHTML = numGuesses; 
+
+            // If user runs out of guessess
             if (numGuesses === 0) {
+
+              // Then play audio lose sound
               audioLose.play();
-              var okay = confirm("Dang, try again!");
-              if (okay == true) {
-                location.reload();
-              } else {
-                location.reload();
-              }
+
+              // The display disguised word 
+              document.getElementById("blankWord").innerHTML = randomWord.split('').join(" ");
+
+              // Incremente losses variable 
+              losses++; 
+
+              // Display incremented loss counter to user
+              document.getElementById("lossCount").innerHTML = losses;
+                
+              // Delay reset of game by one second so audio play before word reset 
+              setTimeout(function() { generateRandomWord(); }, 3000);
+              
             }
           }
         }
 
+        // If user word match the disguised word, user wins game, audio plays, wins count updated
         if (blankWord.join("") == randomWord) {
+
+          // Then play audio win sound 
           audioWin.play();
+
+          // Increment win variable
           wins++;
+
+          // Display incremented win counter to user 
           document.getElementById("winsCount").innerHTML = wins;
           
+          // Delay generation of new word by one second so user may see their last key input 
           setTimeout(function() { generateRandomWord(); }, 1000);
-
-          // var again = confirm("Congrats, you got it!");
-          // if (again == true) {
-          //     location.reload();
-          // } else {
-          //     location.reload();
-          // }
-
-          // function delayAlert() {
-          //     setTimeout(function(){ confirm("Congrats, you figured it out! \nNow please refresh to play again!"); }, 500);
-          //     // if (confirm) {
-          //     //     location.reload();
-          //     // }
-          // }
-          // delayAlert();
-
-          // display the updated guess
-
-          // document.getElementById("playAgain").style = "display: show";
-
-          // invoke a function that randomly generates another word functionName();
         }
       };
     }

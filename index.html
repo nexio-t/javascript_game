@@ -7,27 +7,39 @@
     <title>Document</title>
 
     <script src="assets/javascript/game.js"></script>
-    <link
-      href="https://fonts.googleapis.com/css?family=Lobster|VT323&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Nunito+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
   </head>
 
   <body>
     <div class="container">
+
+    <div class="jumbotron">
+      <h1 id="head">How strong is your vocabulary?</h1>
+      <img id="nerd-image" src="assets/images/nerd.png" alt="icon of nerd" href="https://icon-library.net/icon/nerd-icon-png-26.html">
       <h2 id="pressedKey">Press enter to get started!</h2>
+    </div>
 
-      <p id="WinsStyle">Wins: <span id="winsCount"></span></p>
 
-      <h3><span id="blankWord"></span></h3>
+      
 
-      <p id="guessRem">
-        Number of guesses remaining: <span id="countGuesses">-</span>
-      </p>
+        <div class="row">
+            <div class="col-6"
+      <p id="guessRem">Guesses remaining: <span id="countGuesses"></span></p>
+            </div>
+            <div class="col-3">
+      <p id="WinsStyle">Wins: <span id="winsCount">0</span></p>
+    </div>
+    <div class="col-3">
+      <p id="lossStyle">Losses: <span id="lossCount">0</span></p>
+    </div>
+    </div>
 
-      <p id="letGuess">
-        Letters already guessed: <span id="lettersGuessed"></span>
+      <h3 class="text-center"><span id="blankWord">_ _ _ _ _</span></h3>
+
+      <p id="letGuess" class="text-center">
+        <span id="lettersGuessed"></span>
       </p>
     </div>
     <!-- 
